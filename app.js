@@ -14,6 +14,12 @@ myApp.config(function ($routeProvider) {
 	.when('/forecast', {
 		templateUrl: 'pages/weather.html',
 		controller: 'weatherController'
+	})
+
+	// pattern matching to check for # of days to display
+	.when('/forecast/:days', {
+		templateUrl: 'pages/weather.html',
+		controller: 'weatherController'
 	});
 });
 
@@ -32,17 +38,24 @@ myApp.controller('mainController', ['$scope', 'cityService', function($scope, ci
 	});
 }]);
 
-myApp.controller('weatherController', ['$scope', '$resource', 'cityService', function($scope, $resource, cityService){
+myApp.controller('weatherController', ['$scope', '$resource', '$routeParams', 'cityService', function($scope, $resource, $routeParams, cityService){
 
 	$scope.city = cityService.city;
+
+	$scope.days = $routeParams.days || 2;
 
 	$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast/daily?APPID=ef9657c3d076894f78e9b2c86a213767', {
 		callback: "JSON_CALLBACK"
 	}, { get: { method: "JSONP"}});
 
-	$scope.weatherResult = $scope.weatherAPI.get({q: $scope.city, cnt: 2});
+	$scope.weatherResult = $scope.weatherAPI.get({q: $scope.city, cnt: $scope.days});
 
-	console.log($scope.weatherResult);
+	$scope.convertToCelsius = function(degK){
+		return Math.round(degK - 273.15);
+	};
+
+	$scope.convertToDate = function(dt){
+		return new Date(dt * 1000);
+	};
 }]);
-
 
