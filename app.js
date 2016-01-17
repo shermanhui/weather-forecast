@@ -59,3 +59,17 @@ myApp.controller('weatherController', ['$scope', '$resource', '$routeParams', 'c
 	};
 }]);
 
+myApp.directive('weatherReport', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/weatherReport.html',
+		replace: true,
+		scope: {
+			weatherDay: "=", // object
+			convertToStandard: "&", // fn
+			convertToDate: "&", // fn
+			dateFormat: "@" // text
+		}
+	}
+})
+
