@@ -42,7 +42,7 @@ myApp.controller('weatherController', ['$scope', '$resource', '$routeParams', 'c
 
 	$scope.city = cityService.city;
 
-	$scope.days = $routeParams.days || 2;
+	$scope.days = $routeParams.days || '2';
 
 	$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast/daily?APPID=ef9657c3d076894f78e9b2c86a213767', {
 		callback: "JSON_CALLBACK"
