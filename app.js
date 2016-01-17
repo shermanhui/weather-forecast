@@ -59,6 +59,7 @@ myApp.controller('weatherController', ['$scope', '$resource', '$routeParams', 'c
 	};
 }]);
 
+// directives
 myApp.directive('weatherReport', function(){
 	return {
 		restrict: 'E',
