@@ -6,23 +6,23 @@ myApp.config(function ($routeProvider) {
 
 	$routeProvider
 
-	.when('./', {
-		templateURL: 'pages/home.html',
+	.when('/', {
+		templateUrl: 'pages/home.html',
 		controller: 'mainController'
 	})
 
 	.when('/forecast', {
-		templateURL: 'pages/weather.html',
+		templateUrl: 'pages/weather.html',
 		controller: 'weatherController'
 	});
 });
 
 // controllers
-myApp.controller('mainController', ['$scope', function(){
+myApp.controller('mainController', ['$scope', function($scope){
 
 }]);
 
-myApp.controller('weatherController', ['$scope', function(){
+myApp.controller('weatherController', ['$scope', function($scope){
 
 }]);
 
